@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { ibmPlexSans } from '@/styles/fonts';
 import './globals.css';
+import ReactQueryClientProvider from './config/ReactQueryClientProvider';
+import RecoilProvider from './config/RecoilProvider';
 
 export const metadata: Metadata = {
   title: 'Binance Clone',
@@ -15,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang='ko'>
       <body className={`${ibmPlexSans.variable} font-sans antialiased`}>
-        {children}
+        <RecoilProvider>
+          <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
+        </RecoilProvider>
       </body>
     </html>
   );
