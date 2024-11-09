@@ -16,9 +16,9 @@ export default {
         foreground: 'var(--foreground)',
         binance: {
           yellow: '#FCD535',
-          dark: '#1E2329',
-          light: '#EAECEF',
-          gray: '#848E9C',
+          primary: '#181a20',
+          green: '#2ebd85',
+          pink: '#f6475d',
         },
       },
     },

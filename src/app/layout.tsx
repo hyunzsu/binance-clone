@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { ibmPlexSans } from '@/styles/fonts';
-import './globals.css';
+import '@/styles/globals.css';
 import ReactQueryClientProvider from './config/ReactQueryClientProvider';
 import RecoilProvider from './config/RecoilProvider';
 
@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='ko'>
+    <html lang='en'>
       <body className={`${ibmPlexSans.variable} font-sans antialiased`}>
         <RecoilProvider>
           <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
