@@ -1,3 +1,7 @@
 export default function MarketList() {
-  return <div className='bg-blue-500 p-4'>MarketList Section</div>;
+  return (
+    <div className='common-bg common-border-radius h-full p-4'>
+      MarketList Section
+    </div>
+  );
 }

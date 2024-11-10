@@ -14,12 +14,10 @@ export default {
       colors: {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
-        binance: {
-          yellow: '#FCD535',
-          primary: '#181a20',
-          green: '#2ebd85',
-          pink: '#f6475d',
-        },
+        primary: '#181a20',
+        yellow: '#FCD535',
+        green: '#2ebd85',
+        pink: '#f6475d',
       },
     },
   },

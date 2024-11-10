@@ -17,3 +17,12 @@ body {
   color: var(--foreground);
   background: var(--background);
 }
+
+/* 공통 스타일 추가 */
+.common-bg {
+  @apply bg-primary; /* Tailwind의 primary 색상 */
+}
+
+.common-border-radius {
+  @apply rounded-lg; /* 원하는 보더 레디우스 */
+}
