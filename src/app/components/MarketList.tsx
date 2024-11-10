@@ -2,168 +2,20 @@
 
 import { useState } from 'react';
 import { MARKET_TABS } from '@/app/constants/tab';
-import { Market } from '@/app/types/type';
-
-// mocks/marketData.ts
-export const mockMarkets: Market[] = [
-  {
-    symbol: '1000SATS/USDT',
-    lastPrice: '0.0002737',
-    priceChange: '0.0000187',
-    priceChangePercent: '7.38',
-    volume: '123456.78',
-    quoteVolume: '34.56',
-  },
-  {
-    symbol: '1INCH/USDT',
-    lastPrice: '0.2874',
-    priceChange: '0.0138',
-    priceChangePercent: '5.04',
-    volume: '2345678.90',
-    quoteVolume: '678.90',
-  },
-  {
-    symbol: '1INCH/USDT',
-    lastPrice: '0.2874',
-    priceChange: '0.0138',
-    priceChangePercent: '5.04',
-    volume: '2345678.90',
-    quoteVolume: '678.90',
-  },
-  {
-    symbol: '1INCH/USDT',
-    lastPrice: '0.2874',
-    priceChange: '0.0138',
-    priceChangePercent: '5.04',
-    volume: '2345678.90',
-    quoteVolume: '678.90',
-  },
-  {
-    symbol: '1INCH/USDT',
-    lastPrice: '0.2874',
-    priceChange: '0.0138',
-    priceChangePercent: '5.04',
-    volume: '2345678.90',
-    quoteVolume: '678.90',
-  },
-  {
-    symbol: '1000SATS/USDC',
-    lastPrice: '0.0002737',
-    priceChange: '0.0000187',
-    priceChangePercent: '7.38',
-    volume: '123456.78',
-    quoteVolume: '34.56',
-  },
-  {
-    symbol: '1000SATS/USDT',
-    lastPrice: '0.0002737',
-    priceChange: '0.0000187',
-    priceChangePercent: '7.38',
-    volume: '123456.78',
-    quoteVolume: '34.56',
-  },
-  {
-    symbol: '1INCH/USDT',
-    lastPrice: '0.2874',
-    priceChange: '0.0138',
-    priceChangePercent: '5.04',
-    volume: '2345678.90',
-    quoteVolume: '678.90',
-  },
-  {
-    symbol: '1INCH/USDT',
-    lastPrice: '0.2874',
-    priceChange: '0.0138',
-    priceChangePercent: '5.04',
-    volume: '2345678.90',
-    quoteVolume: '678.90',
-  },
-  {
-    symbol: '1INCH/USDT',
-    lastPrice: '0.2874',
-    priceChange: '0.0138',
-    priceChangePercent: '5.04',
-    volume: '2345678.90',
-    quoteVolume: '678.90',
-  },
-  {
-    symbol: '1INCH/USDT',
-    lastPrice: '0.2874',
-    priceChange: '0.0138',
-    priceChangePercent: '5.04',
-    volume: '2345678.90',
-    quoteVolume: '678.90',
-  },
-  {
-    symbol: '1000SATS/USDC',
-    lastPrice: '0.0002737',
-    priceChange: '0.0000187',
-    priceChangePercent: '7.38',
-    volume: '123456.78',
-    quoteVolume: '34.56',
-  },
-  {
-    symbol: '1000SATS/USDT',
-    lastPrice: '0.0002737',
-    priceChange: '0.0000187',
-    priceChangePercent: '7.38',
-    volume: '123456.78',
-    quoteVolume: '34.56',
-  },
-  {
-    symbol: '1INCH/USDT',
-    lastPrice: '0.2874',
-    priceChange: '0.0138',
-    priceChangePercent: '5.04',
-    volume: '2345678.90',
-    quoteVolume: '678.90',
-  },
-  {
-    symbol: '1INCH/USDT',
-    lastPrice: '0.2874',
-    priceChange: '0.0138',
-    priceChangePercent: '5.04',
-    volume: '2345678.90',
-    quoteVolume: '678.90',
-  },
-  {
-    symbol: '1INCH/USDT',
-    lastPrice: '0.2874',
-    priceChange: '0.0138',
-    priceChangePercent: '5.04',
-    volume: '2345678.90',
-    quoteVolume: '678.90',
-  },
-  {
-    symbol: '1INCH/USDT',
-    lastPrice: '0.2874',
-    priceChange: '0.0138',
-    priceChangePercent: '5.04',
-    volume: '2345678.90',
-    quoteVolume: '678.90',
-  },
-  {
-    symbol: '1000SATS/USDC',
-    lastPrice: '0.0002737',
-    priceChange: '0.0000187',
-    priceChangePercent: '7.38',
-    volume: '123456.78',
-    quoteVolume: '34.56',
-  },
-];
+import { marketListData } from '../mocks';
 
 export default function MarketList() {
   const [searchTerm, setSearchTerm] = useState('');
   const [activeTab, setActiveTab] = useState<(typeof MARKET_TABS)[number]>('USDT');
 
-  const filteredMarkets = mockMarkets.filter((market) => {
+  const filteredMarkets = marketListData.filter((market) => {
     const matchesSearch = market.symbol.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesTab = market.symbol.endsWith(activeTab);
     return matchesSearch && matchesTab;
   });
 
   return (
-    <div className="common-bg common-border-radius flex h-full max-h-[420px] flex-col">
+    <section className="common-bg common-border-radius flex h-full max-h-[420px] flex-col">
       {/* Search Section */}
       <div className="px-4 pt-4">
         <div className="relative">
@@ -245,6 +97,6 @@ export default function MarketList() {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 }

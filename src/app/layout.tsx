@@ -15,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
+    <html lang="en">
       <body className={`${ibmPlexSans.variable} font-sans antialiased`}>
         <RecoilProvider>
           <ReactQueryClientProvider>{children}</ReactQueryClientProvider>

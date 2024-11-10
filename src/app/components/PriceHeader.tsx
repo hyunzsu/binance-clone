@@ -1,14 +1,4 @@
-// 목업 데이터
-const mockData = {
-  symbol: 'BTC/USDT',
-  lastPrice: '76,733.99',
-  priceChange: '421.99',
-  priceChangePercent: '0.55',
-  highPrice: '77,100.00',
-  lowPrice: '75,714.66',
-  volume: '18,255.84',
-  quoteVolume: '1,396,077,714.30',
-};
+import { priceHeaderData } from '../mocks';
 
 // 태그 데이터
 const tags = ['POW', 'Payments', 'Vol', 'Hot', 'Price Protection'];
@@ -30,15 +20,15 @@ export default function PriceHeader() {
           />
         </svg>
         <div className="flex flex-col">
-          <div className="text-xl font-bold">{mockData.symbol}</div>
+          <div className="text-xl font-bold">{priceHeaderData.symbol}</div>
           <div className="text-xs text-textTertiary underline underline-offset-1">Bitcoin Price</div>
         </div>
       </div>
 
       {/* Price Section */}
       <div className="flex flex-col">
-        <div className="text-xl font-bold text-pink">{mockData.lastPrice}</div>
-        <div className="text-xs">${mockData.lastPrice}</div>
+        <div className="text-xl font-bold text-pink">{priceHeaderData.lastPrice}</div>
+        <div className="text-xs">${priceHeaderData.lastPrice}</div>
       </div>
 
       {/* 24h Stats */}
@@ -46,25 +36,25 @@ export default function PriceHeader() {
         <div className="flex flex-col">
           <span className="mb-1 text-textTertiary">24h Change</span>
           <div className="flex gap-1 text-green">
-            <span>{mockData.priceChange}</span>
-            <span>+{mockData.priceChangePercent}%</span>
+            <span>{priceHeaderData.priceChange}</span>
+            <span>+{priceHeaderData.priceChangePercent}%</span>
           </div>
         </div>
         <div className="flex flex-col">
           <span className="mb-1 text-textTertiary">24h High</span>
-          <span>{mockData.highPrice}</span>
+          <span>{priceHeaderData.highPrice}</span>
         </div>
         <div className="flex flex-col">
           <span className="mb-1 text-textTertiary">24h Low</span>
-          <span>{mockData.lowPrice}</span>
+          <span>{priceHeaderData.lowPrice}</span>
         </div>
         <div className="flex flex-col">
           <span className="mb-1 whitespace-nowrap text-textTertiary">24h Volume(BTC)</span>
-          <span>{mockData.volume}</span>
+          <span>{priceHeaderData.volume}</span>
         </div>
         <div className="flex flex-col">
           <span className="mb-1 whitespace-nowrap text-textTertiary">24h Volume(USDT)</span>
-          <span>{mockData.quoteVolume}</span>
+          <span>{priceHeaderData.quoteVolume}</span>
         </div>
       </div>
 
