@@ -24,6 +24,16 @@ export default {
         green: '#2ebd85',
         pink: '#f6475d',
       },
+      keyframes: {
+        'loading-dot': {
+          '0%': { opacity: '.2' },
+          '20%': { opacity: '1' },
+          '100%': { opacity: '.2' },
+        },
+      },
+      animation: {
+        'loading-dot': 'loading-dot 1.4s infinite ease-in-out',
+      },
     },
   },
   plugins: [],
