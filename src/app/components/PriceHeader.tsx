@@ -24,7 +24,7 @@ export default function PriceHeader() {
   const isPriceUp = parseFloat(priceData.priceChange) >= 0;
 
   return (
-    <section className="common-bg common-border-radius flex h-full items-center gap-4 px-2 py-1">
+    <section className="common-bg common-border-radius flex h-full items-center gap-4 px-4 py-1">
       {/* Symbol Section */}
       <div className="flex items-center gap-2">
         <svg
@@ -47,11 +47,11 @@ export default function PriceHeader() {
       {/* Price Section */}
       <div className="flex flex-col">
         <div className="text-xl font-bold text-pink">{formatPrice(priceData.lastPrice)}</div>
-        <div className="text-xs">${formatPrice(priceData.lastPrice)}</div>
+        <div className="text-xs font-medium">${formatPrice(priceData.lastPrice)}</div>
       </div>
 
       {/* 24h Stats */}
-      <div className="flex items-center gap-4 text-xs">
+      <div className="flex items-center gap-4 text-xs font-medium">
         <div className="flex flex-col">
           <span className="mb-1 text-textTertiary">24h Change</span>
           <div className={`flex gap-1 ${isPriceUp ? 'text-green' : 'text-pink'}`}>
@@ -78,7 +78,7 @@ export default function PriceHeader() {
       </div>
 
       {/* Tags Section */}
-      <div className="flex flex-col text-xs">
+      <div className="flex flex-col text-xs font-medium">
         <span className="mb-1 text-textTertiary">Token Tags</span>
         <div className="flex gap-0.5">
           {TOKEN_TAGS.map((tag) => (
