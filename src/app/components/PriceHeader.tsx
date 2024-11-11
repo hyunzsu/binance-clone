@@ -1,9 +1,27 @@
-import { priceHeaderData } from '../mocks';
+'use client';
 
-// 태그 데이터
-const tags = ['POW', 'Payments', 'Vol', 'Hot', 'Price Protection'];
+import { usePriceData } from '@/app/hooks/queries/usePriceData';
+import { TOKEN_TAGS } from '../constants/tab';
+import { LoadingUI } from './common/LoadingUI';
+import { ErrorUI } from './common/ErrorUI';
 
 export default function PriceHeader() {
+  const { data: priceData, isPending, isError, error } = usePriceData('BTC/USDT');
+
+  if (isPending) {
+    return <LoadingUI />;
+  }
+
+  if (isError) {
+    return (
+      <ErrorUI message={`Error: ${error instanceof Error ? error.message : 'Failed to fetch price data'}`} size="md" />
+    );
+  }
+
+  if (!priceData) return null;
+
+  const isPriceUp = parseFloat(priceData.priceChange) >= 0;
+
   return (
     <section className="common-bg common-border-radius flex h-full items-center gap-4 px-2 py-1">
       {/* Symbol Section */}
@@ -20,41 +38,44 @@ export default function PriceHeader() {
           />
         </svg>
         <div className="flex flex-col">
-          <div className="text-xl font-bold">{priceHeaderData.symbol}</div>
+          <div className="text-xl font-bold">{priceData.symbol}</div>
           <div className="text-xs text-textTertiary underline underline-offset-1">Bitcoin Price</div>
         </div>
       </div>
 
       {/* Price Section */}
       <div className="flex flex-col">
-        <div className="text-xl font-bold text-pink">{priceHeaderData.lastPrice}</div>
-        <div className="text-xs">${priceHeaderData.lastPrice}</div>
+        <div className="text-xl font-bold text-pink">{priceData.lastPrice}</div>
+        <div className="text-xs">${priceData.lastPrice}</div>
       </div>
 
       {/* 24h Stats */}
       <div className="flex items-center gap-4 text-xs">
         <div className="flex flex-col">
           <span className="mb-1 text-textTertiary">24h Change</span>
-          <div className="flex gap-1 text-green">
-            <span>{priceHeaderData.priceChange}</span>
-            <span>+{priceHeaderData.priceChangePercent}%</span>
+          <div className={`flex gap-1 ${isPriceUp ? 'text-green' : 'text-pink'}`}>
+            <span>{priceData.priceChange}</span>
+            <span>
+              {isPriceUp ? '+' : ''}
+              {priceData.priceChangePercent}%
+            </span>
           </div>
         </div>
         <div className="flex flex-col">
           <span className="mb-1 text-textTertiary">24h High</span>
-          <span>{priceHeaderData.highPrice}</span>
+          <span>{priceData.highPrice}</span>
         </div>
         <div className="flex flex-col">
           <span className="mb-1 text-textTertiary">24h Low</span>
-          <span>{priceHeaderData.lowPrice}</span>
+          <span>{priceData.lowPrice}</span>
         </div>
         <div className="flex flex-col">
           <span className="mb-1 whitespace-nowrap text-textTertiary">24h Volume(BTC)</span>
-          <span>{priceHeaderData.volume}</span>
+          <span>{priceData.volume}</span>
         </div>
         <div className="flex flex-col">
           <span className="mb-1 whitespace-nowrap text-textTertiary">24h Volume(USDT)</span>
-          <span>{priceHeaderData.quoteVolume}</span>
+          <span>{priceData.quoteVolume}</span>
         </div>
       </div>
 
@@ -62,8 +83,8 @@ export default function PriceHeader() {
       <div className="flex flex-col text-xs">
         <span className="mb-1 text-textTertiary">Token Tags</span>
         <div className="flex gap-0.5">
-          {tags.map((tag) => (
-            <div key={tag} className="cursor-pointe rounded bg-customYellow px-1 text-xs text-yellow">
+          {TOKEN_TAGS.map((tag) => (
+            <div key={tag} className="cursor-pointer rounded bg-customYellow px-1 text-xs text-yellow">
               {tag}
             </div>
           ))}
