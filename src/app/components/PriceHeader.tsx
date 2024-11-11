@@ -4,6 +4,7 @@ import { usePriceData } from '@/app/hooks/queries/usePriceData';
 import { TOKEN_TAGS } from '../constants/tab';
 import { LoadingUI } from './common/LoadingUI';
 import { ErrorUI } from './common/ErrorUI';
+import { formatPrice, formatPercentage } from '@/app/utils/format';
 
 export default function PriceHeader() {
   const { data: priceData, isPending, isError, error } = usePriceData('BTC/USDT');
@@ -45,8 +46,8 @@ export default function PriceHeader() {
 
       {/* Price Section */}
       <div className="flex flex-col">
-        <div className="text-xl font-bold text-pink">{priceData.lastPrice}</div>
-        <div className="text-xs">${priceData.lastPrice}</div>
+        <div className="text-xl font-bold text-pink">{formatPrice(priceData.lastPrice)}</div>
+        <div className="text-xs">${formatPrice(priceData.lastPrice)}</div>
       </div>
 
       {/* 24h Stats */}
@@ -54,28 +55,25 @@ export default function PriceHeader() {
         <div className="flex flex-col">
           <span className="mb-1 text-textTertiary">24h Change</span>
           <div className={`flex gap-1 ${isPriceUp ? 'text-green' : 'text-pink'}`}>
-            <span>{priceData.priceChange}</span>
-            <span>
-              {isPriceUp ? '+' : ''}
-              {priceData.priceChangePercent}%
-            </span>
+            <span>{formatPrice(priceData.priceChange)}</span>
+            <span>{formatPercentage(priceData.priceChangePercent)}</span>
           </div>
         </div>
         <div className="flex flex-col">
           <span className="mb-1 text-textTertiary">24h High</span>
-          <span>{priceData.highPrice}</span>
+          <span>{formatPrice(priceData.highPrice)}</span>
         </div>
         <div className="flex flex-col">
           <span className="mb-1 text-textTertiary">24h Low</span>
-          <span>{priceData.lowPrice}</span>
+          <span>{formatPrice(priceData.lowPrice)}</span>
         </div>
         <div className="flex flex-col">
           <span className="mb-1 whitespace-nowrap text-textTertiary">24h Volume(BTC)</span>
-          <span>{priceData.volume}</span>
+          <span>{formatPrice(priceData.volume)}</span>
         </div>
         <div className="flex flex-col">
           <span className="mb-1 whitespace-nowrap text-textTertiary">24h Volume(USDT)</span>
-          <span>{priceData.quoteVolume}</span>
+          <span>{formatPrice(priceData.quoteVolume)}</span>
         </div>
       </div>
 
