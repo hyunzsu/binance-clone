@@ -39,7 +39,7 @@ export default function Home() {
         </div>
 
         {/* Right Column (3 spans) */}
-        <div className="col-span-3 grid h-full grid-rows-2 gap-4">
+        <div className="flex flex-col gap-4">
           {/* Market List */}
           <MarketList />
           {/* Trade History */}
