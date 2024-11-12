@@ -17,10 +17,11 @@
     "next": "15.0.3",
     "next-i18next": "^15.3.1",
     "prettier-plugin-tailwindcss": "^0.6.8",
-    "react": "19.0.0-rc-66855b96-20241106",
-    "react-dom": "19.0.0-rc-66855b96-20241106",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-i18next": "^15.1.1",
-    "recoil": "^0.7.7",
+    "recharts": "^2.13.3",
+    "recoil": "^0.6.1",
     "tailwind-merge": "^2.5.4"
   },
   "devDependencies": {
