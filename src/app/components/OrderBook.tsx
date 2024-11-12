@@ -3,10 +3,12 @@
 // import { orderBookData } from '../mocks';
 import { useOrderBook } from '../hooks/queries/useOrderBook';
 import { useTradeHistory } from '../hooks/queries/useTradeHistory';
-import { formatAmount, formatNumber, formatPrice, formatTotal } from '../utils/format';
+import { formatAmount, formatPrice, formatTotal } from '../utils/format';
+import { ErrorUI } from './common/ErrorUI';
+import { LoadingUI } from './common/LoadingUI';
 
 export default function OrderBook() {
-  const { data: orderBook } = useOrderBook('BTCUSDT');
+  const { data: orderBook, isPending, isError, error } = useOrderBook('BTCUSDT');
   const { data: tradeHistory } = useTradeHistory('BTCUSDT');
 
   // 최근 거래가격 (중앙에 표시될 가격)
@@ -14,7 +16,18 @@ export default function OrderBook() {
   const currentPrice = lastTrade?.price || '';
   const isBuyerMaker = lastTrade?.isBuyerMaker;
 
-  if (!orderBook) return null;
+  if (isPending) {
+    return <LoadingUI size="lg" />;
+  }
+
+  if (isError) {
+    return (
+      <ErrorUI
+        message={`Error: ${error instanceof Error ? error.message : 'Failed to fetch orderBook data'}`}
+        size="lg"
+      />
+    );
+  }
 
   return (
     <section className="common-bg common-border-radius flex h-full flex-col">
@@ -39,7 +52,7 @@ export default function OrderBook() {
               key={`ask-${index}`}
               className="relative grid cursor-pointer grid-cols-3 px-4 py-0.5 text-xs transition-all duration-300 hover:bg-gray-700"
             >
-              <div className="relative z-10 font-medium text-pink">{formatNumber(parseFloat(price), 2)}</div>
+              <div className="relative z-10 font-medium text-pink">{formatPrice(price)}</div>
               <div className="relative z-10 text-right font-medium">{formatAmount(amount)}</div>
               <div className="relative z-10 text-right font-medium">{formatTotal(total)}</div>
             </div>
@@ -52,7 +65,7 @@ export default function OrderBook() {
         <span className={`mr-3 text-xl font-bold ${isBuyerMaker ? 'text-pink' : 'text-green'}`}>
           {formatPrice(currentPrice)}
         </span>
-        <span className="ml-2 text-xs text-textTertiary">${formatNumber(parseFloat(currentPrice), 2)}</span>
+        <span className="ml-2 text-xs text-textTertiary">${formatPrice(currentPrice)}</span>
       </div>
 
       {/* Bids (Buy Orders) */}
@@ -64,7 +77,7 @@ export default function OrderBook() {
               key={`bid-${index}`}
               className="relative grid cursor-pointer grid-cols-3 px-4 py-0.5 text-xs transition-all duration-300 hover:bg-gray-700"
             >
-              <div className="relative z-10 font-medium text-green">{formatNumber(parseFloat(price), 2)}</div>
+              <div className="relative z-10 font-medium text-green">{formatPrice(price)}</div>
               <div className="relative z-10 text-right font-medium">{formatAmount(amount)}</div>
               <div className="relative z-10 text-right font-medium">{formatTotal(total)}</div>
             </div>
