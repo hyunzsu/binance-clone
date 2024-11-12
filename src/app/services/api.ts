@@ -47,17 +47,17 @@ export const getMarketList = async (quoteAsset: string): Promise<MarketListData[
 };
 
 /**
- * 호가창 데이터 조회
+ * 호가창 데이터 조회 - OrderBook
  */
 export const getOrderBook = async (symbol: string, limit: number = 20): Promise<OrderBookData> => {
-  const response = await fetch(`${BINANCE_API_URL}/depth?symbol=${formatSymbol(symbol)}&limit=${limit}`);
+  const response = await fetch(`${BINANCE_API_URL}/depth?symbol=${symbol}&limit=${limit}`);
   return await response.json();
 };
 
 /**
- * 최근 체결 내역 조회
+ * 최근 체결 내역 조회 - TradeHistory
  */
 export const getRecentTrades = async (symbol: string, limit: number = 50): Promise<TradeHistoryItem[]> => {
-  const response = await fetch(`${BINANCE_API_URL}/trades?symbol=${formatSymbol(symbol)}&limit=${limit}`);
+  const response = await fetch(`${BINANCE_API_URL}/trades?symbol=${symbol}&limit=${limit}`);
   return await response.json();
 };
