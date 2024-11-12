@@ -1,20 +1,27 @@
 'use client';
 
+import { useSetRecoilState } from 'recoil';
 // import { orderBookData } from '../mocks';
 import { useOrderBook } from '../hooks/queries/useOrderBook';
 import { useTradeHistory } from '../hooks/queries/useTradeHistory';
 import { formatAmount, formatPrice, formatTotal } from '../utils/format';
 import { ErrorUI } from './common/ErrorUI';
 import { LoadingUI } from './common/LoadingUI';
+import { selectedPriceState } from '../atoms/tradingAtom';
 
 export default function OrderBook() {
   const { data: orderBook, isPending, isError, error } = useOrderBook('BTCUSDT');
   const { data: tradeHistory } = useTradeHistory('BTCUSDT');
+  const setSelectedPrice = useSetRecoilState(selectedPriceState);
 
   // 최근 거래가격 (중앙에 표시될 가격)
   const lastTrade = tradeHistory?.lastPrice;
   const currentPrice = lastTrade?.price || '';
   const isBuyerMaker = lastTrade?.isBuyerMaker;
+
+  const handlePriceClick = (price: string) => {
+    setSelectedPrice(price);
+  };
 
   if (isPending) {
     return <LoadingUI size="lg" />;
@@ -32,7 +39,7 @@ export default function OrderBook() {
   return (
     <section className="common-bg common-border-radius flex h-full flex-col">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-inputLine px-4 py-2">
+      <div className="flex items-center justify-between border-b border-colorLine px-4 py-2">
         <div className="text-textPrimary text-sm font-bold">Order Book</div>
       </div>
 
@@ -50,6 +57,7 @@ export default function OrderBook() {
           return (
             <div
               key={`ask-${index}`}
+              onClick={() => handlePriceClick(price)}
               className="relative grid cursor-pointer grid-cols-3 px-4 py-0.5 text-xs transition-all duration-300 hover:bg-gray-700"
             >
               <div className="relative z-10 font-medium text-pink">{formatPrice(price)}</div>
@@ -75,6 +83,7 @@ export default function OrderBook() {
           return (
             <div
               key={`bid-${index}`}
+              onClick={() => handlePriceClick(price)}
               className="relative grid cursor-pointer grid-cols-3 px-4 py-0.5 text-xs transition-all duration-300 hover:bg-gray-700"
             >
               <div className="relative z-10 font-medium text-green">{formatPrice(price)}</div>
