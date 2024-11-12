@@ -1,4 +1,4 @@
-import { MarketListData, OrderBookData, PriceHeaderData, TradeHistoryItem } from '../types/type';
+import { MarketListData, OrderBookData, PriceHeaderData, TradeHistoryItem, KlineData } from '../types/type';
 import { formatSymbol } from '../utils/format';
 
 const BINANCE_API_URL = 'https://api.binance.com/api/v3';
@@ -60,4 +60,26 @@ export const getOrderBook = async (symbol: string, limit: number = 20): Promise<
 export const getRecentTrades = async (symbol: string, limit: number = 50): Promise<TradeHistoryItem[]> => {
   const response = await fetch(`${BINANCE_API_URL}/trades?symbol=${symbol}&limit=${limit}`);
   return await response.json();
+};
+
+
+export const getKlineData = async (
+  symbol: string,
+  interval: string = '1d',
+  limit: number = 100
+): Promise<KlineData[]> => {
+  const response = await fetch(
+    `${BINANCE_API_URL}/klines?symbol=${formatSymbol(symbol)}&interval=${interval}&limit=${limit}`
+  );
+  const data = await response.json();
+  
+  return data.map((item: any[]) => ({
+    openTime: item[0],
+    open: item[1],
+    high: item[2],
+    low: item[3],
+    close: item[4],
+    volume: item[5],
+    closeTime: item[6]
+  }));
 };
