@@ -1,4 +1,4 @@
-## 바이낸스 클론코딩
+## Binance
 
 > Binance API를 활용한 암호화폐 거래소 구현 프로젝트입니다. 실시간 시세 조회, 차트 분석, 호가창 확인, 주문 기능 등 거래소의 핵심 기능들을 제공합니다.
 
@@ -13,9 +13,6 @@
 ### 프로젝트 설치 및 실행
 해당 프로젝트를 열고 다음과 같이 명령어를 실행해주세요.
 ```bash
-# 프로젝트 클론
-git clone https://github.com/your-username/binance-clone.git
-
 # 종속성 설치 (Next.js 15 버전 호환성을 위해 --legacy-peer-deps 옵션 필요)
 npm install --legacy-peer-deps
 
@@ -23,10 +20,15 @@ npm install --legacy-peer-deps
 npm run dev
 ```
 
+<br/>
+<br/>
 
 ### 프로젝트 개요
-- **주제**: 바이낸스 클론 프로젝트
+
+- **주제** : 바이낸스 클론 프로젝트
 - **개발 기간** : 2024.11.09~ 2024.11.12
+<br/>
+<br/>
 
 ### 기술스택
 <div align= "start">
@@ -39,6 +41,8 @@ npm run dev
   <img src="https://img.shields.io/badge/prettier-F7B93E?style=for-the-badge&logo=prettier&logoColor=black">
   </span>
 </div>
+<br/>
+<br/>
 
 ### 주요 기능
 - 실시간 마켓 시세 조회
@@ -46,12 +50,16 @@ npm run dev
 - 실시간 호가창 및 거래 내역
 - 다양한 시간 프레임 지원 (15m, 1h, 4h, 1d, 1w)
 - 매수/매도 주문
+<br/>
+<br/>
 
 ### 실시간 데이터 업데이트
 - 마켓 리스트: 30초
 - 호가창: 1초
 - 거래 내역: 1초
 - 시세 정보: 1초
+<br/>
+<br/>
 
 ### 폴더 구조
 ```
@@ -69,6 +77,8 @@ src
  ┃ ┗ utils         # 유틸리티 함수
  ┗ styles          # 전역 스타일
 ```
+<br/>
+<br/>
 
 ### 라이브러리
 ```json
