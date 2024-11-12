@@ -26,12 +26,12 @@ export default function Home() {
             {/* Right Side - Chart and Trading Form */}
             <div className="col-span-6 flex flex-col gap-4">
               {/* Chart Section */}
-              <div className="h-[70%]">
-                <Chart />
+              <div className="h-[60%]">
+                <Chart symbol="BTCUSDT" />
               </div>
 
               {/* Trading Form */}
-              <div className="h-[30%]">
+              <div className="h-[40%]">
                 <TradingForm />
               </div>
             </div>
@@ -39,7 +39,7 @@ export default function Home() {
         </div>
 
         {/* Right Column (3 spans) */}
-        <div className="flex flex-col gap-4">
+        <div className="col-span-3 flex flex-col gap-4">
           {/* Market List */}
           <MarketList />
           {/* Trade History */}

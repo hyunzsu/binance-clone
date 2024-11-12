@@ -13,12 +13,8 @@ export default function TradeHistory() {
   }
 
   if (isError) {
-    return (
-      <ErrorUI
-        message={`Error: ${error instanceof Error ? error.message : 'Failed to fetch tradeHistory data'}`}
-        size="lg"
-      />
-    );
+    return <ErrorUI  message={`Error: ${error instanceof Error ? error.message : 'Failed to fetch tradeHistory data'}`}
+    size="lg" />;
   }
 
   return (

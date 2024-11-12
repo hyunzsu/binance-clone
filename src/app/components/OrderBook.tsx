@@ -37,7 +37,7 @@ export default function OrderBook() {
   }
 
   return (
-    <section className="common-bg common-border-radius flex h-full flex-col">
+    <section className="common-bg common-border-radius flex h-full flex-col max-h-[920px]">
       {/* Header */}
       <div className="flex items-center justify-between border-b border-colorLine px-4 py-2">
         <div className="text-textPrimary text-sm font-bold">Order Book</div>

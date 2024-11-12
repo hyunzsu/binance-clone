@@ -35,7 +35,7 @@ export default function MarketList() {
     : [];
 
   return (
-    <section className="common-bg common-border-radius flex h-full max-h-[400px] w-[364px] flex-col">
+    <section className="common-bg common-border-radius flex h-full max-h-[400px] flex-col">
       {/* Search Section */}
       <div className="px-4 pt-4">
         <div className="relative">

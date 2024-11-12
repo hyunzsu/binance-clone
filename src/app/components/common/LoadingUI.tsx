@@ -6,8 +6,8 @@ interface LoadingUIProps {
 export function LoadingUI({ className = '', size = 'md' }: LoadingUIProps) {
   const sizeClasses = {
     sm: 'h-12',
-    md: 'h-24',
-    lg: 'h-[400px]',
+    md: 'h-full',
+    lg: 'h-full',
   };
 
   const dotSizes = {
@@ -22,8 +22,8 @@ export function LoadingUI({ className = '', size = 'md' }: LoadingUIProps) {
     >
       <div className="flex items-center gap-1">
         <div className={`${dotSizes[size]} animate-loading-dot rounded-full bg-gray-500`} />
-        <div className={`${dotSizes[size]} animate-loading-dot animation-delay-200 rounded-full bg-gray-500`} />
-        <div className={`${dotSizes[size]} animate-loading-dot animation-delay-400 rounded-full bg-gray-500`} />
+        <div className={`${dotSizes[size]} animation-delay-200 animate-loading-dot rounded-full bg-gray-500`} />
+        <div className={`${dotSizes[size]} animation-delay-400 animate-loading-dot rounded-full bg-gray-500`} />
       </div>
     </div>
   );
