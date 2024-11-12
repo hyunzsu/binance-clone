@@ -45,3 +45,35 @@ export interface KlineData {
   volume: string;
   closeTime: number;
 }
+
+export interface BinanceTickerResponse {
+  symbol: string
+  lastPrice: string
+  priceChange: string
+  priceChangePercent: string
+  highPrice: string
+  lowPrice: string
+  volume: string
+  quoteVolume: string
+}
+
+export interface Binance24hrTickerResponse {
+  symbol: string
+  lastPrice: string
+  priceChangePercent: string
+}
+
+export type BinanceKlineResponse = [
+  number,  // openTime
+  string,  // open
+  string,  // high
+  string,  // low
+  string,  // close
+  string,  // volume
+  number,  // closeTime
+  string,  // quoteVolume
+  number,  // trades
+  string,  // takerBuyBaseVolume
+  string,  // takerBuyQuoteVolume
+  string   // ignore
+][]
