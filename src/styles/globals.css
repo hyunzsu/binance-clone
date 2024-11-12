@@ -23,6 +23,24 @@ body {
   @apply bg-primary; /* Tailwind의 primary 색상 */
 }
 
+/* 애니메이션 딜레이를 위한 유틸리티 클래스 */
 .common-border-radius {
   @apply rounded-lg; /* 원하는 보더 레디우스 */
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-400 {
+  animation-delay: 400ms;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

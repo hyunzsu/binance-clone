@@ -7,46 +7,46 @@ import Chart from '@/app/components/Chart';
 
 export default function Home() {
   return (
-    <main className='text-white h-screen bg-background'>
-      <div className='grid grid-cols-12 gap-4 p-4 h-full'>
-        {/* Left Column (9 spans) */}
-        <div className='col-span-9 flex flex-col gap-4'>
-          {/* Price Header */}
-          <div className='h-20'>
-            <PriceHeader />
-          </div>
-
-          {/* Main Content Area */}
-          <div className='flex-1 grid grid-cols-12 gap-4'>
-            {/* Left Side - Order Book */}
-            <div className='col-span-3 '>
-              <OrderBook />
+    <main className="h-screen bg-background text-textPimary">
+      <div className="mx-auto h-full max-w-screen-2xl p-4">
+        <div className="grid h-full gap-4 grid-cols-1 md:grid-cols-8 lg:grid-cols-12">
+          
+          {/* Main Content Area - Takes full width on mobile, 6 cols on tablet, 9 cols on desktop */}
+          <div className="flex flex-col gap-4 col-span-1 md:col-span-8 lg:col-span-9">
+            {/* Price Header - Always visible */}
+            <div className="h-20">
+              <PriceHeader />
             </div>
-
-            {/* Right Side - Chart and Trading Form */}
-            <div className='col-span-9 flex flex-col gap-4'>
-              {/* Chart Section */}
-              <div className='h-[70%] '>
-                <Chart />
+            {/* Chart and Trading Area */}
+            <div className="grid gap-4 grid-cols-1 md:grid-cols-8">
+              {/* Order Book - Hidden on mobile, 3 cols on tablet/desktop */}
+              <div className="hidden md:block md:col-span-3">
+                <OrderBook />
               </div>
 
-              {/* Trading Form */}
-              <div className='h-[30%] '>
-                <TradingForm />
+              {/* Chart and Trading Form Container */}
+              <div className="flex flex-col gap-4
+                              col-span-1
+                              md:col-span-5">
+                {/* Chart Section - Always visible */}
+                <div className="h-[60vh] md:h-[60%]">
+                  <Chart symbol="BTCUSDT" />
+                </div>
+
+                {/* Trading Form - Hidden on mobile */}
+                <div className="hidden md:block md:h-[40%]">
+                  <TradingForm />
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Right Column (3 spans) */}
-        <div className='col-span-3 grid grid-rows-2 gap-4 h-full'>
-          {/* Market List */}
-          <div className=''>
+          {/* Market List and Trade History Container 
+              Hidden on mobile, Bottom on tablet, Right side on desktop */}
+          <div className="hidden md:flex md:flex-col md:gap-4
+                          md:col-span-8
+                          lg:col-span-3">
             <MarketList />
-          </div>
-
-          {/* Trade History */}
-          <div className=''>
             <TradeHistory />
           </div>
         </div>

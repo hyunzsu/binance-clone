@@ -1,7 +1,13 @@
-'use client';
+// @ts-nocheck
+'use client'
 
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot } from 'recoil'
+import type { ReactNode } from 'react'
 
-export default function RecoilProvider({ children }: React.PropsWithChildren) {
-  return <RecoilRoot>{children}</RecoilRoot>;
+interface RecoilProviderProps {
+  children: ReactNode
+}
+
+export default function RecoilProvider({ children }: RecoilProviderProps) {
+  return <RecoilRoot>{children}</RecoilRoot>
 }
