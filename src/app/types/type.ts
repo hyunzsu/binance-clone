@@ -36,7 +36,6 @@ export interface TradeHistoryItem {
   isBuyerMaker: boolean;
 }
 
-
 export interface KlineData {
   openTime: number;
   open: string;
@@ -45,9 +44,4 @@ export interface KlineData {
   close: string;
   volume: string;
   closeTime: number;
-  quoteVolume: string;
-  trades: number;
-  buyBaseVolume: string;
-  buyQuoteVolume: string;
-  ignored: string;
 }
