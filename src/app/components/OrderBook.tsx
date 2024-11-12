@@ -3,7 +3,7 @@
 // import { orderBookData } from '../mocks';
 import { useOrderBook } from '../hooks/queries/useOrderBook';
 import { useTradeHistory } from '../hooks/queries/useTradeHistory';
-import { formatNumber } from '../utils/format';
+import { formatAmount, formatNumber, formatPrice, formatTotal } from '../utils/format';
 
 export default function OrderBook() {
   const { data: orderBook } = useOrderBook('BTCUSDT');
@@ -33,15 +33,15 @@ export default function OrderBook() {
       {/* Asks (Sell Orders) */}
       <div className="h-[340px] flex-1 overflow-auto">
         {orderBook.asks.map(([price, amount], index) => {
-          const total = parseFloat(price) * parseFloat(amount);
+          const total = Number(price) * Number(amount);
           return (
             <div
               key={`ask-${index}`}
               className="relative grid cursor-pointer grid-cols-3 px-4 py-0.5 text-xs transition-all duration-300 hover:bg-gray-700"
             >
               <div className="relative z-10 font-medium text-pink">{formatNumber(parseFloat(price), 2)}</div>
-              <div className="relative z-10 text-right font-medium">{amount}</div>
-              <div className="relative z-10 text-right font-medium">{formatNumber(total, 0)}K</div>
+              <div className="relative z-10 text-right font-medium">{formatAmount(amount)}</div>
+              <div className="relative z-10 text-right font-medium">{formatTotal(total)}</div>
             </div>
           );
         })}
@@ -50,7 +50,7 @@ export default function OrderBook() {
       {/* Current Price */}
       <div className="flex items-center px-4 py-2">
         <span className={`mr-3 text-xl font-bold ${isBuyerMaker ? 'text-pink' : 'text-green'}`}>
-          {formatNumber(parseFloat(currentPrice), 2)}
+          {formatPrice(currentPrice)}
         </span>
         <span className="ml-2 text-xs text-textTertiary">${formatNumber(parseFloat(currentPrice), 2)}</span>
       </div>
@@ -58,15 +58,15 @@ export default function OrderBook() {
       {/* Bids (Buy Orders) */}
       <div className="h-[340px] flex-1 overflow-auto">
         {orderBook.bids.map(([price, amount], index) => {
-          const total = parseFloat(price) * parseFloat(amount);
+          const total = Number(price) * Number(amount);
           return (
             <div
               key={`bid-${index}`}
               className="relative grid cursor-pointer grid-cols-3 px-4 py-0.5 text-xs transition-all duration-300 hover:bg-gray-700"
             >
               <div className="relative z-10 font-medium text-green">{formatNumber(parseFloat(price), 2)}</div>
-              <div className="relative z-10 text-right font-medium">{amount}</div>
-              <div className="relative z-10 text-right font-medium">{formatNumber(total, 0)}K</div>
+              <div className="relative z-10 text-right font-medium">{formatAmount(amount)}</div>
+              <div className="relative z-10 text-right font-medium">{formatTotal(total)}</div>
             </div>
           );
         })}

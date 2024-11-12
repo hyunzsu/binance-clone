@@ -1,7 +1,7 @@
 'use client';
 
 import { useTradeHistory } from '@/app/hooks/queries/useTradeHistory';
-import { formatNumber } from '../utils/format';
+import { formatAmount, formatPrice } from '../utils/format';
 
 export default function TradeHistory() {
   const { data } = useTradeHistory('BTCUSDT');
@@ -35,10 +35,10 @@ export default function TradeHistory() {
           return (
             <div key={trade.id} className="hover:bg-background-light grid grid-cols-3 px-4 py-1 text-xs">
               <div className={`font-medium ${trade.isBuyerMaker ? 'text-pink' : 'text-green'}`}>
-                {formatNumber(parseFloat(trade.price), 2)}
+                {formatPrice(trade.price)}
               </div>
-              <div className="text-textPrimary text-right font-medium">{trade.qty}</div>
-              <div className="text-right font-medium text-textTertiary">{time}</div>
+              <div className="text-textPrimary text-right font-medium">{formatAmount(trade.qty)}</div>
+              <div className="text-right font-medium">{time}</div>
             </div>
           );
         })}
